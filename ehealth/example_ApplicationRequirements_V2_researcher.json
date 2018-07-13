@@ -33,12 +33,12 @@
 				}
 			},
 			{
-				"id": "processCompleteness_9",
-				"description": "Process completeness 9",
+				"id": "processCompleteness_8",
+				"description": "Process completeness 8",
 				"type": "Process completeness",
 				"properties": {
 					"completeness": {
-						"minimum": 9,
+						"minimum": 8,
 						"unit": "percentage"
 					}
 				}
@@ -194,7 +194,7 @@
 							"description": "Completeness",
 							"weight": 1,
 							"attributes": [
-								"processCompleteness_9"
+								"processCompleteness_8"
 							]
 						}
 					]

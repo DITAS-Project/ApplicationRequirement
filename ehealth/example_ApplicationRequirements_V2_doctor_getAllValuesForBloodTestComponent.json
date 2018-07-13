@@ -11,13 +11,13 @@
 	},
 	"attributes": {
 		"dataUtility": [{
-				"id": "availability_999999",
-				"description": "Availability 99.9999",
+				"id": "availability_99",
+				"description": "Availability 99",
 				"type": "Availability",
 				"properties": {
 					"availability": {
 						"unit": "percentage",
-						"minimum": 99.9999
+						"minimum": 99
 					}
 				}
 			},
@@ -114,7 +114,7 @@
 									"description": "Service available",
 									"weight": 1,
 									"attributes": [
-										"availability_999999"
+										"availability_99"
 									]
 								}
 							]
@@ -148,7 +148,7 @@
 				}
 			]
 		},
-		"security": { ---nell'abstract blueprint security e' definita nel vecchio modo, va cambiata usando struttura dictionary
+		"security": { 
 			"type": "AND",
 			"children": [{
 				"type": "AND",
