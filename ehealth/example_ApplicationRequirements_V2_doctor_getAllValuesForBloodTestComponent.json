@@ -1,0 +1,184 @@
+{
+	"applicationType": "Other",
+	"functionalRequirements": {
+		
+		"methodTags": ["ask_ICCS_must_match_getAllValuesForBloodTestComponent"],
+		"vdcTags": ["ask_ICCS_must_match_getAllValuesForBloodTestComponent"],
+		"schema": {
+			"attributes": ["SSN","component"]
+		}
+
+	},
+	"attributes": {
+		"dataUtility": [{
+				"id": "availability_999999",
+				"description": "Availability 99.9999",
+				"type": "Availability",
+				"properties": {
+					"availability": {
+						"unit": "percentage",
+						"minimum": 99.9999
+					}
+				}
+			},
+			{
+				"id": "responseTime_1",
+				"description": "ResponseTime 1",
+				"type": "ResponseTime",
+				"properties": {
+					"responseTime": {
+						"maximum": 1,
+						"unit": "second"
+					}
+				}
+			},
+			{
+				"id": "timeliness_06",
+				"description": "Timeliness 0.6",
+				"type": "Timeliness",
+				"properties": {
+					"timeliness": {
+						"maximum": 0.6,
+						"unit": "NONE"
+					}
+				}
+			}
+		],
+		"security": [{
+				"id": "encryptionAES_128",
+				"description": "Encryption AES 128",
+				"type": "Encryption",
+				"properties": {
+					"protocol": {
+						"unit": "enum",
+						"value": "TLS"
+					},
+					"algorithm": {
+						"unit": "enum",
+						"value": "AES"
+					},
+					"keyLength": {
+						"unit": "number",
+						"minimum": 128
+					}
+				}
+			},
+			{
+				"id": "tracing_1",
+				"description": "Tracing",
+				"type": "Tracing",
+				"properties": {
+					"level": {
+						"unit": "enum",
+						"value": "datasource"
+					},
+					"sampleRate": {
+						"unit": "percentage",
+						"value": 1
+					},
+					"instrumentation": {
+						"unit": "enum",
+						"value": "VDC"
+					}
+				}
+			},
+			{
+				"id": "aclRoleBasedReadOnly",
+				"description": "ACL rolebased readOnly",
+				"type": "ACL",
+				"properties": {
+					"protocol": {
+						"unit": "enum",
+						"value": "username/password"
+					},
+					"credentials": {
+						"unit": "list",
+						"value": ["doctor_er_id"]
+					}
+				}
+			}
+		],
+		"privacy": []
+
+	},
+	"goalTrees": {
+		"dataUtility": {
+			"type": "AND",
+			"children": [{
+					"type": "AND",
+					"children": [{
+							"type": "OR",
+							"leaves": [
+								{
+									"id": "serviceAvailable",
+									"description": "Service available",
+									"weight": 1,
+									"attributes": [
+										"availability_999999"
+									]
+								}
+							]
+						},
+						{
+							"type": "OR",
+							"leaves": [{
+									"id": "fastDataProcess",
+									"description": "Fast data process",
+									"weight": 1,
+									"attributes": [
+										"responseTime_1"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "AND",
+					"leaves": [
+						{
+							"id": "timeliness",
+							"description": "Timeliness",
+							"weight": 1,
+							"attributes": [
+								"timeliness_06"
+							]
+						}
+					]
+				}
+			]
+		},
+		"security": { ---nell'abstract blueprint security e' definita nel vecchio modo, va cambiata usando struttura dictionary
+			"type": "AND",
+			"children": [{
+				"type": "AND",
+				"leaves": [{
+						"id": "storageEncryption",
+						"description": "Storage encryption",
+						"weight": 1,
+						"attributes": [
+							"encryptionAES_128"
+						]
+					}
+				]
+			}],
+			"leaves": [{
+					"id": "accessControl",
+					"description": "Access control",
+					"weight": 1,
+					"attributes": [
+						"aclRoleBasedReadOnly"
+					]
+				},
+				{
+					"id": "tracing",
+					"description": "Tracing and monitoring",
+					"weight": 1,
+					"attributes": [
+						"tracing_1"
+					]
+				}
+			]
+		}
+	}
+}
