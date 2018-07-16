@@ -82,7 +82,7 @@
 					"protocol": {
 						"unit": "enum",
 						"value": "TLS"
-					}
+					},
 					"algorithm": {
 						"unit": "enum",
 						"value": "AES"
