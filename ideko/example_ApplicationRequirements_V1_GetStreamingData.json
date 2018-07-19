@@ -1,0 +1,158 @@
+{
+	"applicationType": "Other",
+	"functionalRequirements": {
+		"methodTags": ["ask_ICCS_must_match_GetStreamingData"],
+		"vdcTags": ["ask_ICCS_must_match_GetStreamingData"],
+		"schema": {
+			"attributes": ["machine"]
+		}
+
+	},
+	"attributes": {
+		"dataUtility": 
+		[
+			{
+				"id": "availability_9099",
+				"description":"Availability 90-99",
+				"type":"Availability",
+				"properties": 
+				{
+					"availability": 
+					{
+						"unit": "percentage",
+						"minimum":90,
+						"maximum":99
+					}				
+				}						
+			},
+			{
+				"id": "processCompleteness_80",
+				"description": "Process completeness 80",
+				"type": "Process completeness",
+				"properties": 
+				{
+					"completeness": 
+					{
+						"minimum":80,
+						"unit": "percentage"
+					}
+				}
+			},
+			{
+				"id": "timeliness_065",
+				"description": "Timeliness 0.65",
+				"type": "Timeliness",
+				"properties": 
+				{
+					"timeliness": 
+					{
+						"maximum":0.65,
+						"unit": "NONE"
+					}
+				}
+			},
+			{
+				"id": "precision_08",
+				"description": "Precision 0.8",
+				"type": "Precision",
+				"properties": 
+				{
+					"precision": 
+					{
+						"minimum":0.8,
+						"unit": "none"
+					}
+				}
+			},
+			{
+				"id": "accuracy_09",
+				"description": "Accuracy 0.9",
+				"type": "Accuracy",
+				"properties": 
+				{
+					"accuracy": 
+					{
+						"minimum":0.9,
+						"unit": "none"
+					}
+				}
+			}
+		],
+		"security": [],
+		"privacy": []
+	},
+	"goalTrees": {
+		"dataUtility":
+		{
+			"type":"AND",
+			"children":
+			[
+				{
+					"type":"AND",
+					"children":[
+						{
+							"type":"OR",
+							"leaves":
+							[
+								{
+									"id": "serviceAvailable",
+									"description": "Service available", 
+									"weight":1,
+									"attributes": 
+									[
+										"availability_9599"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type":"AND",
+					"leaves":
+					[
+						{
+							"id": "timeliness",
+							"description": "Timeliness",
+							"weight":1,
+							"attributes":
+							[
+								"timeliness_065"
+							]                
+						}
+						,
+						{
+							"id": "accuracy",
+							"description": "Accuracy",
+							"weight":1,
+							"attributes":
+							[
+								"accuracy_09"
+							]                
+						}
+						,
+						{
+							"id": "completeness",
+							"description": "Completeness",
+							"weight":1,
+							"attributes":
+							[
+								"processCompleteness_80"
+							]                
+						}
+						,
+						{
+							"id": "consistency",
+							"description": "consistency",
+							"weight":1,
+							"attributes":
+							[
+								"precision_08"
+							]                
+						}
+					]
+				}
+			]
+		}
+	}
+}

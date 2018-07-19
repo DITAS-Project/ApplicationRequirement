@@ -1,0 +1,163 @@
+{
+	"applicationType": "Other",
+	"functionalRequirements": {
+		"methodTags": ["ask_ICCS_must_match_GetIndicatorsData"],
+		"vdcTags": ["ask_ICCS_must_match_GetIndicatorsData"],
+		"schema": {
+			"attributes": ["indicators", "from", "to"]
+		}
+
+	},
+	"attributes": {
+		"dataUtility": 
+		[
+			{
+				"id": "availability_8099",
+				"description":"Availability 80-99",
+				"type":"Availability",
+				"properties": 
+				{
+					"availability": 
+					{
+						"unit": "percentage",
+						"minimum":80,
+						"maximum":99
+					}				
+				}						
+			},
+			{
+				"id": "processCompleteness_80",
+				"description": "Process completeness 80",
+				"type": "Process completeness",
+				"properties": 
+				{
+					"completeness": 
+					{
+						"minimum":80,
+						"unit": "percentage"
+					}
+				}
+			},
+			{
+				"id": "throughput_14",
+				"description": "Throughput 1.4",
+				"type": "Throughput",
+				"properties": 
+				{
+					"throughput": 
+					{
+						"maximum":1.4,
+						"unit": "MB/s"
+					}
+				}
+			},
+			{
+				"id": "precision_08",
+				"description": "Precision 0.8",
+				"type": "Precision",
+				"properties": 
+				{
+					"precision": 
+					{
+						"minimum":0.8,
+						"unit": "none"
+					}
+				}
+			},
+			{
+				"id": "accuracy_09",
+				"description": "Accuracy 0.9",
+				"type": "Accuracy",
+				"properties": 
+				{
+					"accuracy": 
+					{
+						"minimum":0.9,
+						"unit": "none"
+					}
+				}
+			}
+		],
+		"security": [],
+		"privacy": []
+	},
+	"goalTrees": {
+		"dataUtility":
+		{
+			"type":"AND",
+			"children":
+			[
+				{
+					"type":"AND",
+					"children":[
+						{
+							"type":"OR",
+							"leaves":
+							[
+								{
+									"id": "serviceAvailable",
+									"description": "Service available", 
+									"weight":1,
+									"attributes": 
+									[
+										"availability_8099"
+									]
+								}
+							]
+						},
+						{
+							"type":"OR",
+							"leaves":
+							[
+								{
+									"id": "fastDataStreaming",
+									"description": "Fast data streaming",
+									"weight":1,
+									"attributes":
+									[
+										"throughput_14"
+									]                
+								}
+							]
+						}
+					]
+				},
+				{
+					"type":"AND",
+					"leaves":
+					[
+						{
+							"id": "accuracy",
+							"description": "Accuracy",
+							"weight":1,
+							"attributes":
+							[
+								"accuracy_09"
+							]                
+						}
+						,
+						{
+							"id": "completeness",
+							"description": "Completeness",
+							"weight":1,
+							"attributes":
+							[
+								"processCompleteness_80"
+							]                
+						}
+						,
+						{
+							"id": "consistency",
+							"description": "consistency",
+							"weight":1,
+							"attributes":
+							[
+								"precision_08"
+							]                
+						}
+					]
+				}
+			]
+		}
+	}
+}
