@@ -16,7 +16,7 @@
 				"type": "Volume",
 				"properties": {
 					"volume": {
-						"value": 8000,
+						"minimum": 8000,
 						"unit": "tuple"
 					}
 				}
