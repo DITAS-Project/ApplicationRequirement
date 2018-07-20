@@ -12,16 +12,15 @@
 		"dataUtility": 
 		[
 			{
-				"id": "availability_9099",
-				"description":"Availability 90-99",
+				"id": "availability_90",
+				"description":"Availability 90",
 				"type":"Availability",
 				"properties": 
 				{
 					"availability": 
 					{
 						"unit": "percentage",
-						"minimum":90,
-						"maximum":99
+						"minimum":90
 					}				
 				}						
 			},
@@ -46,7 +45,7 @@
 				{
 					"throughput": 
 					{
-						"maximum":1.8,
+						"minimum":1.8,
 						"unit": "MB/s"
 					}
 				}
@@ -100,7 +99,7 @@
 									"weight":1,
 									"attributes": 
 									[
-										"availability_9099"
+										"availability_90"
 									]
 								}
 							]
